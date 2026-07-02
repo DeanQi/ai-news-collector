@@ -1,59 +1,56 @@
-# AIé¦å ãæµ£îå§©é¬ä½¹æ£©é¶?
-å§£å¿ãéæ¤¾å«éå æ£¿ 9:00 é·îå§©é²å¬æ³¦ AI é¦å ãæµ£îæ®éâ¬éæ¿å§©é¬ä¾ç´éºã©â¬ä½½å¦æ¤ç°åç¼ãæºé£ã¤æ±é?
-## é²å¬æ³¦é¼å¨æ´¿
+# AI圈大佬动态日报
 
-çåæ´æµ ã¤ç¬ 32 æµ£?ç¼?AI é¦å ãæµ£îæ°éçç¯é?
-| ç»«è¯²å | æµè¹å¢¿/ç¼å­ç² |
+每天北京时间 9:00 自动采集 AI 圈大佬的最新动态，推送至飞书群机器人。
+
+## 采集范围
+
+覆盖以下 32 位/组 AI 圈大佬和机构：
+
+| 类别 | 人物/组织 |
 |------|----------|
-| æ¤¤åéªæ£°åî» | Yann LeCun, Geoffrey Hinton, Yoshua Bengio, Ilya Sutskever, Sam Altman, Demis Hassabis, éåº¨î£æ¤? éå­ä»¼æ?|
-| æ¾¶ÑÄé¨?| Andrej Karpathy, Dario Amodei, Aidan Gomez, Noam Shazeer, å§ä½¹æé¿?DeepSeek) |
-| å¯®â¬å©§æ®æé¬?| Clement Delangue, Thomas Wolf, Lukas Biewald |
-| æ¶îæµAI | å¯®ç±ç°¹é? éæ­æ¾(éé¸¿æ°¨), éå¬ªç¬å®¸?é§æ§çª), éåº¡ç´æ¾¶?éæµç«´æ¶å©å¢¿), éã©ç¼ç»?360), æ¦åªç²é?|
-| çï¸½æ¹³éå¶é¨ | Percy Liang, Jim Fan, Christopher Manning, Pieter Abbeel, Sergey Levine |
-| é²å¶î¦ç¼å­ç² | Meta FAIR, Google DeepMind, OpenAI, Anthropic, Cohere, HuggingFace |
+| 顶级领袖 | Yann LeCun, Geoffrey Hinton, Yoshua Bengio, Ilya Sutskever, Sam Altman, Demis Hassabis, 李飞飞, 吴恩达 |
+| 大模型 | Andrej Karpathy, Dario Amodei, Aidan Gomez, Noam Shazeer, 梁文锋(DeepSeek) |
+| 开源生态 | Clement Delangue, Thomas Wolf, Lukas Biewald |
+| 中国AI | 张亚勤, 唐杰(智谱), 王小川(百川), 李开复(零一万物), 周鸿祎(360), 黄仁勋 |
+| 学术前沿 | Percy Liang, Jim Fan, Christopher Manning, Pieter Abbeel, Sergey Levine |
+| 重要组织 | Meta FAIR, Google DeepMind, OpenAI, Anthropic, Cohere, HuggingFace |
 
-## éçåµå©§?
-| éçåµå©§?| çå­æ§ | éîæéâ¬çä¾îæ¾¶æ ­å¤ç¼?|
+## 数据源
+
+| 数据源 | 说明 | 是否需要额外配置 |
 |--------|------|:---:|
-| ArXiv | éâ¬éæîéå·ç´æ©?8çå¿æ¤é?| é?|
-| GitHub | éîç´éã¦â¬ä¾ç´Push/Star/PR/Issueç»å¤ç´ | é?|
-| Twitter | éâ¬éçå¸¹é?| éâ¬ç?Twitter API Bearer Token |
-| å¯°î¼å´¥ | éâ¬éæ¿äºé?| éâ¬çä½¸äºé?Cookie |
+| ArXiv | 最新论文（近48小时） | 否 |
+| GitHub | 公开动态（Push/Star/PR/Issue等） | 否 |
+| Twitter | 最新推文 | 需要 Twitter API Bearer Token |
+| 微博 | 最新微博 | 需要微博 Cookie |
 
-## è¹î¦â¬ç·ç´æ¿®?
-### 1. éæ¶ç¼ GitHub æµ æ³ç°±
+## 快速开始
+
+### 1. 创建 GitHub 仓库
 
 ```bash
-# éå¬®æ®é´æ §åµæ¿®å¬ªå¯²æµ æ³ç°±
 git init
 git add .
-git commit -m "init: AI news collector"
-git remote add origin <æµ£çµæ®æµ æ³ç°±é¦æ¿æ½>
+git commit -m init: AI news collector
+git remote add origin [你的仓库地址]
 git push -u origin main
 ```
 
-### 2. é°å¶ç Secrets
+### 2. 配置 Secrets
 
-é¦?GitHub æµ æ³ç°±æ¤¤ç¸æ½°éæ­Settings` é«?`Secrets and variables` é«?`Actions` é«?`New repository secret`
-
-| Secret éå¶Ð | çå­æ§ | è¹å­ï½ |
+| Secret 名称 | 说明 | 必填 |
 |-------------|------|:---:|
-| `FEISHU_WEBHOOK_URL` | æ¤ç°åéåæ«æµ?Webhook é¦æ¿æ½ | é?|
-| `TWITTER_BEARER_TOKEN` | Twitter API v2 Bearer Tokenéå å½²é«å¤ç´æ¶å¶å¤éæ¬ç¦æ©?Twitteré?| é?|
-| `WEIBO_COOKIE` | å¯°î¼å´¥é§è¯²ç¶ Cookieéå å½²é«å¤ç´æ¶å¶å¤éæ¬ç¦æ©å§äºéæ°¾ç´ | é?|
+| FEISHU_WEBHOOK_URL | 飞书机器人 Webhook 地址 | 是 |
+| TWITTER_BEARER_TOKEN | Twitter API v2 Bearer Token | 否 |
+| WEIBO_COOKIE | 微博登录 Cookie | 否 |
 
-### 3. æ¥ å²ç
+### 3. 验证
 
-éºã©â¬ä½·å¬é®ä½¸æéå­itHub Actions æµ¼æ°¬æ¹ªå§£å¿ãéæ¤¾å«éå æ£¿ 9:00 é·îå§©æ©æ¯îéåç¯éîäºéµå¬ªå§©çï¹å½é?
-1. æ©æ¶åæµ æ³ç°± `Actions` æ¤¤ç¸æ½°
-2. é«å¤å«¨ `Daily AI News Report`
-3. éç°å® `Run workflow`
+每天北京时间 9:00 自动运行。可手动触发：Actions → Daily AI News Report → Run workflow
 
-## æ¤¤å­æ´°ç¼æ´ç¯
+## 项目结构
 
-```
-.
-é¹æº¾æ¢é¹â¬ .github/workflows/daily-ai-report.yml   # GitHub Actions å®¸ã¤ç¶å¨´?é¹æº¾æ¢é¹â¬ scripts/collect_ai_news.py              # é²å¬æ³¦æ¶æå¼é?é¹æº¾æ¢é¹â¬ requirements.txt                         # Python æ¸æ¿ç¦
-é¹æºæ¢é¹â¬ README.md
-```
-*éå å´ç¹å­æ±AIé¢ç¸åéå±¼ç²æ¸æ¶å¼¬é°å¿ç´*
+- `.github/workflows/daily-ai-report.yml` - GitHub Actions 工作流
+- `scripts/collect_ai_news.py` - 采集主脚本（含翻译）
+- `requirements.txt` - Python 依赖
+- `README.md`
