@@ -41,49 +41,49 @@ MAX_PER_SOURCE = 1
 # 格式: { "name": "中文名/常用名", "arxiv_name": "ArXiv作者名(Last, First)", "github_user": "GitHub用户名或org", "twitter_id": "Twitter用户ID数字", "weibo_uid": "微博UID" }
 BIG_NAMES = [
     # === 顶级研究机构/企业领袖 ===
-    {"name": "Yann LeCun",           "arxiv_name": "LeCun, Yann",            "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Geoffrey Hinton",      "arxiv_name": "Hinton, Geoffrey",       "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Yoshua Bengio",        "arxiv_name": "Bengio, Yoshua",         "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Ilya Sutskever",       "arxiv_name": "Sutskever, Ilya",        "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Sam Altman",           "arxiv_name": "",                       "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Demis Hassabis",       "arxiv_name": "Hassabis, Demis",        "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "李飞飞 (Fei-Fei Li)",   "arxiv_name": "Li, Fei-Fei",            "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "吴恩达 (Andrew Ng)",    "arxiv_name": "Ng, Andrew",             "github_user": "andrewng",           "twitter_id": "", "weibo_uid": ""},
+    {"name": "Yann LeCun",           "arxiv_name": "LeCun, Yann",            "github_user": "",                   "twitter_id": "105943820",           "weibo_uid": ""},
+    {"name": "Geoffrey Hinton",      "arxiv_name": "Hinton, Geoffrey",       "github_user": "",                   "twitter_id": "",                     "weibo_uid": ""},
+    {"name": "Yoshua Bengio",        "arxiv_name": "Bengio, Yoshua",         "github_user": "",                   "twitter_id": "",                     "weibo_uid": ""},
+    {"name": "Ilya Sutskever",       "arxiv_name": "Sutskever, Ilya",        "github_user": "",                   "twitter_id": "",                     "weibo_uid": ""},
+    {"name": "Sam Altman",           "arxiv_name": "",                       "github_user": "",                   "twitter_id": "19497576",            "weibo_uid": ""},
+    {"name": "Demis Hassabis",       "arxiv_name": "Hassabis, Demis",        "github_user": "",                   "twitter_id": "389534645",           "weibo_uid": ""},
+    {"name": "李飞飞 (Fei-Fei Li)",   "arxiv_name": "Li, Fei-Fei",            "github_user": "",                   "twitter_id": "978780836951838720",  "weibo_uid": ""},
+    {"name": "吴恩达 (Andrew Ng)",    "arxiv_name": "Ng, Andrew",             "github_user": "andrewng",           "twitter_id": "823533",              "weibo_uid": ""},
 
     # === 大模型/LLM方向 ===
-    {"name": "Andrej Karpathy",      "arxiv_name": "Karpathy, Andrej",       "github_user": "karpathy",           "twitter_id": "", "weibo_uid": ""},
-    {"name": "Dario Amodei",         "arxiv_name": "Amodei, Dario",          "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Aidan Gomez",          "arxiv_name": "Gomez, Aidan",           "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Noam Shazeer",         "arxiv_name": "Shazeer, Noam",          "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "梁文锋 (DeepSeek)",     "arxiv_name": "",                       "github_user": "deepseek-ai",        "twitter_id": "", "weibo_uid": ""},
+    {"name": "Andrej Karpathy",      "arxiv_name": "Karpathy, Andrej",       "github_user": "karpathy",           "twitter_id": "16539359",            "weibo_uid": ""},
+    {"name": "Dario Amodei",         "arxiv_name": "Amodei, Dario",          "github_user": "",                   "twitter_id": "16668453",            "weibo_uid": ""},
+    {"name": "Aidan Gomez",          "arxiv_name": "Gomez, Aidan",           "github_user": "",                   "twitter_id": "2347577145",          "weibo_uid": ""},
+    {"name": "Noam Shazeer",         "arxiv_name": "Shazeer, Noam",          "github_user": "",                   "twitter_id": "",                     "weibo_uid": ""},
+    {"name": "梁文锋 (DeepSeek)",     "arxiv_name": "",                       "github_user": "deepseek-ai",        "twitter_id": "",                     "weibo_uid": ""},
 
     # === 开源/工具生态 ===
-    {"name": "Clement Delangue",     "arxiv_name": "",                       "github_user": "ClementDelangue",    "twitter_id": "", "weibo_uid": ""},
-    {"name": "Thomas Wolf",          "arxiv_name": "",                       "github_user": "thomwolf",           "twitter_id": "", "weibo_uid": ""},
-    {"name": "Lukas Biewald",        "arxiv_name": "",                       "github_user": "lukas",              "twitter_id": "", "weibo_uid": ""},
+    {"name": "Clement Delangue",     "arxiv_name": "",                       "github_user": "ClementDelangue",    "twitter_id": "13260032",            "weibo_uid": ""},
+    {"name": "Thomas Wolf",          "arxiv_name": "",                       "github_user": "thomwolf",           "twitter_id": "14345915",            "weibo_uid": ""},
+    {"name": "Lukas Biewald",        "arxiv_name": "",                       "github_user": "lukas",              "twitter_id": "",                     "weibo_uid": ""},
 
     # === 中国AI圈 ===
-    {"name": "张亚勤",               "arxiv_name": "Zhang, Ya-Qin",           "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "唐杰 (智谱/ChatGLM)",   "arxiv_name": "Tang, Jie",              "github_user": "THUDM",              "twitter_id": "", "weibo_uid": ""},
-    {"name": "王小川 (百川智能)",     "arxiv_name": "",                       "github_user": "baichuan-inc",       "twitter_id": "", "weibo_uid": ""},
-    {"name": "李开复 (零一万物)",     "arxiv_name": "Lee, Kai-Fu",            "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "周鸿祎 (360)",         "arxiv_name": "",                       "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "黄仁勋 (Jensen Huang)", "arxiv_name": "",                       "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
+    {"name": "张亚勤",               "arxiv_name": "Zhang, Ya-Qin",           "github_user": "",                   "twitter_id": "",                     "weibo_uid": "1645171780"},
+    {"name": "唐杰 (智谱/ChatGLM)",   "arxiv_name": "Tang, Jie",              "github_user": "THUDM",              "twitter_id": "",                     "weibo_uid": ""},
+    {"name": "王小川 (百川智能)",     "arxiv_name": "",                       "github_user": "baichuan-inc",       "twitter_id": "",                     "weibo_uid": "1582488432"},
+    {"name": "李开复 (零一万物)",     "arxiv_name": "Lee, Kai-Fu",            "github_user": "",                   "twitter_id": "21443430",            "weibo_uid": "1197161814"},
+    {"name": "周鸿祎 (360)",         "arxiv_name": "",                       "github_user": "",                   "twitter_id": "",                     "weibo_uid": "1708942053"},
+    {"name": "黄仁勋 (Jensen Huang)", "arxiv_name": "",                       "github_user": "",                   "twitter_id": "",                     "weibo_uid": ""},
 
     # === 学术前沿 ===
-    {"name": "Percy Liang",          "arxiv_name": "Liang, Percy",           "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Jim Fan",              "arxiv_name": "Fan, Jim",               "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Christopher Manning",  "arxiv_name": "Manning, Christopher",   "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Pieter Abbeel",        "arxiv_name": "Abbeel, Pieter",         "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Sergey Levine",        "arxiv_name": "Levine, Sergey",         "github_user": "",                   "twitter_id": "", "weibo_uid": ""},
+    {"name": "Percy Liang",          "arxiv_name": "Liang, Percy",           "github_user": "",                   "twitter_id": "26749844",            "weibo_uid": ""},
+    {"name": "Jim Fan",              "arxiv_name": "Fan, Jim",               "github_user": "",                   "twitter_id": "1203899672",          "weibo_uid": ""},
+    {"name": "Christopher Manning",  "arxiv_name": "Manning, Christopher",   "github_user": "",                   "twitter_id": "46721826",            "weibo_uid": ""},
+    {"name": "Pieter Abbeel",        "arxiv_name": "Abbeel, Pieter",         "github_user": "",                   "twitter_id": "105943362",           "weibo_uid": ""},
+    {"name": "Sergey Levine",        "arxiv_name": "Levine, Sergey",         "github_user": "",                   "twitter_id": "3352472124",          "weibo_uid": ""},
 
     # === 重要组织/团队 ===
-    {"name": "Meta FAIR",            "arxiv_name": "",                       "github_user": "facebookresearch",   "twitter_id": "", "weibo_uid": ""},
-    {"name": "Google DeepMind",      "arxiv_name": "",                       "github_user": "google-deepmind",    "twitter_id": "", "weibo_uid": ""},
-    {"name": "OpenAI",               "arxiv_name": "",                       "github_user": "openai",             "twitter_id": "", "weibo_uid": ""},
-    {"name": "Anthropic",            "arxiv_name": "",                       "github_user": "anthropics",         "twitter_id": "", "weibo_uid": ""},
-    {"name": "Cohere",               "arxiv_name": "",                       "github_user": "cohere-ai",          "twitter_id": "", "weibo_uid": ""},
-    {"name": "HuggingFace",          "arxiv_name": "",                       "github_user": "huggingface",        "twitter_id": "", "weibo_uid": ""},
+    {"name": "Meta FAIR",            "arxiv_name": "",                       "github_user": "facebookresearch",   "twitter_id": "14825531",            "weibo_uid": ""},
+    {"name": "Google DeepMind",      "arxiv_name": "",                       "github_user": "google-deepmind",    "twitter_id": "1317668457",          "weibo_uid": ""},
+    {"name": "OpenAI",               "arxiv_name": "",                       "github_user": "openai",             "twitter_id": "4398626122",          "weibo_uid": ""},
+    {"name": "Anthropic",            "arxiv_name": "",                       "github_user": "anthropics",         "twitter_id": "1405248728",          "weibo_uid": ""},
+    {"name": "Cohere",               "arxiv_name": "",                       "github_user": "cohere-ai",          "twitter_id": "1240398540438073344", "weibo_uid": ""},
+    {"name": "HuggingFace",          "arxiv_name": "",                       "github_user": "huggingface",        "twitter_id": "1078992647933444096", "weibo_uid": ""},
 ]
 
 
