@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 AI圈大佬动态日报采集脚本
 - 采集 ArXiv 最新论文
@@ -534,7 +534,7 @@ def build_feishu_text(all_results):
 
     return {
         "msg_type": "text",
-        "text": {"content": "\n".join(lines)},
+        "content": {"text": "\n".join(lines)},
     }
 
 
@@ -633,3 +633,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
