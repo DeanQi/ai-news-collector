@@ -26,6 +26,7 @@ jobs:
       - name: Run collector
         env:
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
           WEIBO_COOKIE: ${{ secrets.WEIBO_COOKIE }}
           TZ: Asia/Shanghai

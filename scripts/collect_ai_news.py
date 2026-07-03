@@ -26,10 +26,12 @@ import pytz
 FEISHU_WEBHOOK_URL = os.environ.get("FEISHU_WEBHOOK_URL", "")
 TWITTER_BEARER_TOKEN = os.environ.get("TWITTER_BEARER_TOKEN", "")
 WEIBO_COOKIE = os.environ.get("WEIBO_COOKIE", "")
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
 BEIJING_TZ = pytz.timezone("Asia/Shanghai")
 TODAY = datetime.now(BEIJING_TZ).strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now(BEIJING_TZ) - timedelta(days=1))
+WEEK_AGO = (datetime.now(BEIJING_TZ) - timedelta(days=7))
 
 # 每个数据源最多展示条数
 MAX_PER_SOURCE = 1
@@ -96,7 +98,7 @@ def fetch_arxiv_papers(arxiv_name, max_results=MAX_PER_SOURCE):
         f"http://export.arxiv.org/api/query"
         f"?search_query=au:{requests.utils.quote(arxiv_name)}"
         f"&sortBy=submittedDate&sortOrder=descending"
-        f"&max_results={max_results}"
+        f"&max_results=10"
     )
     try:
         resp = requests.get(url, timeout=20)
@@ -107,7 +109,7 @@ def fetch_arxiv_papers(arxiv_name, max_results=MAX_PER_SOURCE):
 
     feed = feedparser.parse(resp.text)
     papers = []
-    cutoff = YESTERDAY.replace(tzinfo=None)  # feedparser 的 published_parsed 是 naive UTC
+    cutoff = WEEK_AGO.replace(tzinfo=None)  # feedparser 的 published_parsed 是 naive UTC
 
     for entry in feed.entries:
         published = entry.get("published_parsed")
@@ -144,19 +146,22 @@ def fetch_arxiv_papers(arxiv_name, max_results=MAX_PER_SOURCE):
 # ─── GitHub 动态采集 ────────────────────────────────────
 
 def fetch_github_events(github_user, max_results=MAX_PER_SOURCE):
-    """查询 GitHub 用户/组织近 48h 公开动态"""
+    """查询 GitHub 用户/组织近 7 天公开动态"""
     if not github_user:
         return []
 
-    # 判断是用户还是组织：先尝试 users endpoint
-    url = f"https://api.github.com/users/{github_user}/events/public?per_page={max_results * 3}"
     headers = {"Accept": "application/vnd.github+json", "User-Agent": "AI-News-Collector/1.0"}
+    if GITHUB_TOKEN:
+        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+
+    # 判断是用户还是组织：先尝试 users endpoint
+    url = f"https://api.github.com/users/{github_user}/events/public?per_page=20"
 
     try:
         resp = requests.get(url, headers=headers, timeout=20)
         if resp.status_code == 404:
             # 可能是组织，用 orgs endpoint
-            url = f"https://api.github.com/orgs/{github_user}/events?per_page={max_results * 3}"
+            url = f"https://api.github.com/orgs/{github_user}/events?per_page=20"
             resp = requests.get(url, headers=headers, timeout=20)
         resp.raise_for_status()
     except Exception as e:
@@ -168,7 +173,7 @@ def fetch_github_events(github_user, max_results=MAX_PER_SOURCE):
         return []
 
     results = []
-    cutoff = YESTERDAY.replace(tzinfo=timezone.utc)
+    cutoff = WEEK_AGO.replace(tzinfo=timezone.utc)
     seen = set()
 
     for ev in events:
@@ -534,7 +539,7 @@ def build_feishu_text(all_results):
 
     return {
         "msg_type": "text",
-        "text": {"content": "\n".join(lines)},
+        "content": {"text": "\n".join(lines)},
     }
 
 
