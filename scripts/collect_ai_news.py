@@ -10,7 +10,6 @@ from datetime import datetime, timezone
 
 # --- 配置 ---
 FEISHU_WEBHOOK = os.environ.get("FEISHU_WEBHOOK_URL", "")
-BEIJING_TZ_OFFSET = timezone.utc
 
 # --- ArXiv 采集 ---
 ARXIV_NAMES = {
@@ -78,21 +77,51 @@ def send_to_feishu(title, sections):
         print("No FEISHU_WEBHOOK_URL set, skipping push")
         return False
 
-    blocks = [{"tag": "text", "text": title + "\n"}]
+    # 飞书 post 消息格式：content 是 [[段落1], [段落2], ...]
+    # 每个段落是 [{"tag": "...", "text": "..."}, ...]
+    paragraphs = []
+
     for sec_title, items in sections:
-        blocks.append({"tag": "text", "text": f"\n【{sec_title}】\n"})
+        if not items:
+            continue
+        # 章节标题作为单独段落
+        paragraphs.append([{"tag": "text", "text": f"【{sec_title}】"}])
         for item in items:
             if "stars" in item:
-                blocks.append({"tag": "text", "text": f"{item['name']}  [{item['stars']}]({item['url']})\n  {item.get('desc', '')}\n"})
+                para = [
+                    {"tag": "a", "text": item["name"], "href": item["url"]},
+                    {"tag": "text", "text": f"  {item['stars']} stars"},
+                ]
+                if item.get("desc"):
+                    para.append({"tag": "text", "text": f"\n  {item['desc']}"})
+                paragraphs.append(para)
             elif "summary" in item:
-                blocks.append({"tag": "text", "text": f"**[{item['title']}]({item['url']})**\n  {item.get('summary', '')[:100]}\n"})
+                para = [
+                    {"tag": "a", "text": item["title"], "href": item["url"]},
+                ]
+                if item.get("summary"):
+                    para.append({"tag": "text", "text": f"\n  {item['summary'][:100]}"})
+                paragraphs.append(para)
             else:
-                blocks.append({"tag": "text", "text": f"**[{item['title']}]({item['url']})**\n"})
+                paragraphs.append([
+                    {"tag": "a", "text": item.get("title", ""), "href": item.get("url", "")}
+                ])
+
+    content_data = {
+        "post": {
+            "zh_cn": {
+                "title": title,
+                "content": paragraphs
+            }
+        }
+    }
 
     payload = {
         "msg_type": "post",
-        "content": {"post": {"zh_cn": {"title": title, "content": blocks}}}
+        "content": content_data
     }
+
+    print(f"[Feishu] Payload: {json.dumps(payload, ensure_ascii=False)[:500]}")
 
     try:
         r = requests.post(FEISHU_WEBHOOK, json=payload, timeout=15)
@@ -113,7 +142,12 @@ def main():
     for name, _ in list(ARXIV_NAMES.items())[:5]:  # Limit to 5 for speed
         papers = fetch_arxiv_papers(name, max_results=1)
         if papers:
-            arxiv_items.append({"title": f"{name}: {papers[0]['title']}", "url": papers[0]["url"], "date": papers[0]["date"], "summary": papers[0]["summary"]})
+            arxiv_items.append({
+                "title": f"{name}: {papers[0]['title']}",
+                "url": papers[0]["url"],
+                "date": papers[0]["date"],
+                "summary": papers[0]["summary"]
+            })
 
     # GitHub
     print("Fetching GitHub trending...")
