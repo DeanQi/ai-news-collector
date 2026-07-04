@@ -2,9 +2,9 @@ name: Daily AI News Report
 
 on:
   schedule:
-    # åäº¬æ¶é´æ¯å¤©æ©ä¸ 9:00 (UTC 1:00)
+    # Daily at 9:00 Beijing time (UTC 1:00)
     - cron: '0 1 * * *'
-  workflow_dispatch:  # åè®¸æå¨è§¦å
+  workflow_dispatch:  # Allow manual trigger
 
 jobs:
   collect-and-report:
