@@ -506,9 +506,16 @@ def translate_batch(items, max_retries=2):
 
 # ─── 飞书推送 ───────────────────────────────────────────
 
+def _clean_md(text):
+    """清理文本中的 Markdown 特殊字符，防止格式破坏"""
+    for ch in ["**", "*", "`", "~", "#"]:
+        text = text.replace(ch, "")
+    return text
+
+
 def build_feishu_card(all_results):
-    """构建飞书卡片消息"""
-    header_text = f"AI圈大佬动态日报 | {TODAY}"
+    """构建飞书卡片消息 - 新闻摘要风格"""
+    header_text = f"📰 AI圈大佬动态日报 | {TODAY}"
     elements = []
 
     # 统计总数
@@ -516,6 +523,7 @@ def build_feishu_card(all_results):
     total_github = sum(1 for r in all_results if r["source"] == "GitHub")
     total_twitter = sum(1 for r in all_results if r["source"] == "Twitter")
     total_weibo = sum(1 for r in all_results if r["source"] == "微博")
+    total = len(all_results)
 
     # 摘要行
     summary_parts = []
@@ -527,51 +535,69 @@ def build_feishu_card(all_results):
         summary_parts.append(f"🐦 Twitter {total_twitter} 条")
     if total_weibo:
         summary_parts.append(f"🌐 微博 {total_weibo} 条")
-
-    summary = " | ".join(summary_parts) if summary_parts else "今日暂无新动态"
+    summary = " · ".join(summary_parts) if summary_parts else "今日暂无新动态"
 
     elements.append({
         "tag": "div",
-        "text": {"tag": "lark_md", "content": f"**{summary}**\n"},
+        "text": {"tag": "lark_md", "content": f"**共采集 {total} 条动态**  {summary}\n"},
     })
 
     # 按来源分组
     source_groups = [
-        ("📄 ArXiv 最新论文", "ArXiv"),
+        ("📄 ArXiv 论文", "ArXiv"),
         ("💻 GitHub 动态", "GitHub"),
         ("🐦 Twitter 动态", "Twitter"),
         ("🌐 微博动态", "微博"),
     ]
 
-    for group_title, source in source_groups:
+    global_idx = 0
+
+    for group_icon, source in source_groups:
         group_items = [r for r in all_results if r["source"] == source]
         if not group_items:
             continue
 
-        lines = [f"**{group_title}**\n"]
+        count = len(group_items)
+        lines = [f"\n**{group_icon} ({count}条)**\n"]
+
         for item in group_items:
-            name = item["name"]
-            desc = item.get("translated") or item.get("description", "")
-            desc = desc.replace("**", "").replace("*", "")
+            global_idx += 1
+            name = _clean_md(item["name"])
+            desc = item.get("translated") or item.get("description") or item.get("title", "")
+            desc = _clean_md(desc)
             url = item["url"]
             date = item.get("date", "")
-            lines.append(f"- **{name}**: [{desc}]({url})  _{date}_")
+
+            # 截断过长描述
+            display_desc = desc
+            if len(display_desc) > 80:
+                display_desc = display_desc[:77] + "..."
+
+            lines.append(f"{global_idx}. **{display_desc}**")
+            lines.append(f"   👤 {name}")
+            lines.append(f"   🔗 [{url}]({url})")
+            lines.append(f"   🕐 {date}")
+            lines.append("")
 
         content = "\n".join(lines)
-        # 飞书卡片单元素有内容长度限制，过长则拆分
         if len(content) > 4000:
-            # 截断处理，每条单独发送的方式过于复杂，这里取前若干条
-            content = content[:3800] + "\n... (内容过长已截断)"
+            content = "\n".join(lines[:50]) + "\n\n... (内容过长已截断)"
+            # 计算截断后实际条数
+            truncated_count = sum(1 for line in lines[:50] if line.startswith(("1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9.")))
+            content += f"\n   (已截断，共 {count} 条仅展示前 {truncated_count} 条)"
 
         elements.append({
             "tag": "div",
             "text": {"tag": "lark_md", "content": content},
         })
-        elements.append({"tag": "hr"})
 
-    # 移除最后一个多余的 hr
-    if elements and elements[-1].get("tag") == "hr":
-        elements.pop()
+    # 在 section 之间插入分割线
+    new_elements = []
+    for i, el in enumerate(elements):
+        if i > 0 and el["tag"] == "div":
+            new_elements.append({"tag": "hr"})
+        new_elements.append(el)
+    elements = new_elements
 
     card = {
         "msg_type": "interactive",
