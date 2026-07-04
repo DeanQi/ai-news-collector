@@ -551,7 +551,7 @@ def build_feishu_card(all_results):
         lines = [f"**{group_title}**\n"]
         for item in group_items:
             name = item["name"]
-            desc = item.get("translated") or item["description"]
+            desc = item.get("translated") or item.get("description", "")
             desc = desc.replace("**", "").replace("*", "")
             url = item["url"]
             date = item.get("date", "")
@@ -611,7 +611,7 @@ def build_feishu_text(all_results):
 
         lines.append(group_title)
         for item in group_items[:MAX_PER_SOURCE * 3]:  # éå¶æ¡æ°
-            desc = item.get("translated") or item["description"]
+            desc = item.get("translated") or item.get("description", "")
             lines.append(
                 f"  â¢ {item['name']}: {desc[:100]}"
             )
