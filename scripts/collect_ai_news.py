@@ -42,9 +42,9 @@ MAX_PER_SOURCE = 1
 BIG_NAMES = [
     # === 顶级研究机构/企业领袖 ===
     {"name": "Yann LeCun",           "arxiv_name": "LeCun, Yann",            "github_user": "",                   "twitter_id": "105943820",           "twitter_username": "ylecun",              "weibo_uid": ""},
-    {"name": "Geoffrey Hinton",      "arxiv_name": "Hinton, Geoffrey",       "github_user": "",                   "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
-    {"name": "Yoshua Bengio",        "arxiv_name": "Bengio, Yoshua",         "github_user": "",                   "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
-    {"name": "Ilya Sutskever",       "arxiv_name": "Sutskever, Ilya",        "github_user": "",                   "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
+    {"name": "Geoffrey Hinton",      "arxiv_name": "Hinton, Geoffrey",       "github_user": "",                   "twitter_id": "",                     "twitter_username": "geoffreyhinton",       "weibo_uid": ""},
+    {"name": "Yoshua Bengio",        "arxiv_name": "Bengio, Yoshua",         "github_user": "",                   "twitter_id": "",                     "twitter_username": "yoshuabengio",         "weibo_uid": ""},
+    {"name": "Ilya Sutskever",       "arxiv_name": "Sutskever, Ilya",        "github_user": "",                   "twitter_id": "",                     "twitter_username": "ilyasut",              "weibo_uid": ""},
     {"name": "Sam Altman",           "arxiv_name": "",                       "github_user": "",                   "twitter_id": "19497576",            "twitter_username": "sama",                "weibo_uid": ""},
     {"name": "Demis Hassabis",       "arxiv_name": "Hassabis, Demis",        "github_user": "",                   "twitter_id": "389534645",           "twitter_username": "demishassabis",       "weibo_uid": ""},
     {"name": "李飞飞 (Fei-Fei Li)",   "arxiv_name": "Li, Fei-Fei",            "github_user": "",                   "twitter_id": "978780836951838720",  "twitter_username": "drfeifei",             "weibo_uid": ""},
@@ -54,21 +54,21 @@ BIG_NAMES = [
     {"name": "Andrej Karpathy",      "arxiv_name": "Karpathy, Andrej",       "github_user": "karpathy",           "twitter_id": "16539359",            "twitter_username": "karpathy",             "weibo_uid": ""},
     {"name": "Dario Amodei",         "arxiv_name": "Amodei, Dario",          "github_user": "",                   "twitter_id": "16668453",            "twitter_username": "DarioAmodei",          "weibo_uid": ""},
     {"name": "Aidan Gomez",          "arxiv_name": "Gomez, Aidan",           "github_user": "",                   "twitter_id": "2347577145",          "twitter_username": "aidan_mclau",          "weibo_uid": ""},
-    {"name": "Noam Shazeer",         "arxiv_name": "Shazeer, Noam",          "github_user": "",                   "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
+    {"name": "Noam Shazeer",         "arxiv_name": "Shazeer, Noam",          "github_user": "",                   "twitter_id": "",                     "twitter_username": "NoamShazeer",          "weibo_uid": ""},
     {"name": "梁文锋 (DeepSeek)",     "arxiv_name": "",                       "github_user": "deepseek-ai",        "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
 
     # === 开源/工具生态 ===
     {"name": "Clement Delangue",     "arxiv_name": "",                       "github_user": "ClementDelangue",    "twitter_id": "13260032",            "twitter_username": "ClementDelangue",      "weibo_uid": ""},
     {"name": "Thomas Wolf",          "arxiv_name": "",                       "github_user": "thomwolf",           "twitter_id": "14345915",            "twitter_username": "Thom_Wolf",            "weibo_uid": ""},
-    {"name": "Lukas Biewald",        "arxiv_name": "",                       "github_user": "lukas",              "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
+    {"name": "Lukas Biewald",        "arxiv_name": "",                       "github_user": "lukas",              "twitter_id": "13920962",            "twitter_username": "l2k",                  "weibo_uid": ""},
 
     # === 中国AI圈 ===
     {"name": "张亚勤",               "arxiv_name": "Zhang, Ya-Qin",           "github_user": "",                   "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": "1645171780"},
-    {"name": "唐杰 (智谱/ChatGLM)",   "arxiv_name": "Tang, Jie",              "github_user": "THUDM",              "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
+    {"name": "唐杰 (智谱/ChatGLM)",   "arxiv_name": "Tang, Jie",              "github_user": "THUDM",              "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": "2126427211"},
     {"name": "王小川 (百川智能)",     "arxiv_name": "",                       "github_user": "baichuan-inc",       "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": "1582488432"},
     {"name": "李开复 (零一万物)",     "arxiv_name": "Lee, Kai-Fu",            "github_user": "",                   "twitter_id": "21443430",            "twitter_username": "kaifulee",             "weibo_uid": "1197161814"},
     {"name": "周鸿祎 (360)",         "arxiv_name": "",                       "github_user": "",                   "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": "1708942053"},
-    {"name": "黄仁勋 (Jensen Huang)", "arxiv_name": "",                       "github_user": "",                   "twitter_id": "",                     "twitter_username": "",                    "weibo_uid": ""},
+    {"name": "黄仁勋 (Jensen Huang)", "arxiv_name": "",                       "github_user": "",                   "twitter_id": "",                     "twitter_username": "JenHsun_Huang",        "weibo_uid": ""},
 
     # === 学术前沿 ===
     {"name": "Percy Liang",          "arxiv_name": "Liang, Percy",           "github_user": "",                   "twitter_id": "26749844",            "twitter_username": "percyliang",           "weibo_uid": ""},
@@ -551,7 +551,7 @@ def build_feishu_card(all_results):
         lines = [f"**{group_title}**\n"]
         for item in group_items:
             name = item["name"]
-            desc = item.get("translated") or item["description"]
+            desc = item.get("translated") or item.get("description", "")
             desc = desc.replace("**", "").replace("*", "")
             url = item["url"]
             date = item.get("date", "")
@@ -611,7 +611,7 @@ def build_feishu_text(all_results):
 
         lines.append(group_title)
         for item in group_items[:MAX_PER_SOURCE * 3]:  # 限制条数
-            desc = item.get("translated") or item["description"]
+            desc = item.get("translated") or item.get("description", "")
             lines.append(
                 f"  • {item['name']}: {desc[:100]}"
             )
@@ -635,8 +635,8 @@ def send_to_feishu(card):
     try:
         resp = requests.post(
             FEISHU_WEBHOOK_URL,
-            json=card,
-            headers={"Content-Type": "application/json"},
+            data=json.dumps(card, ensure_ascii=False).encode("utf-8"),
+            headers={"Content-Type": "application/json; charset=utf-8"},
             timeout=15,
         )
         resp.raise_for_status()
