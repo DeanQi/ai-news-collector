@@ -635,8 +635,8 @@ def send_to_feishu(card):
     try:
         resp = requests.post(
             FEISHU_WEBHOOK_URL,
-            json=card,
-            headers={"Content-Type": "application/json"},
+            data=json.dumps(card, ensure_ascii=False).encode("utf-8"),
+            headers={"Content-Type": "application/json; charset=utf-8"},
             timeout=15,
         )
         resp.raise_for_status()
